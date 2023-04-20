@@ -13,50 +13,71 @@
 
 将直线n的方程代入到距离公式中，得到距离公式为：
 
-L^2 = [(x2-x1)/(y2-y1)]^2 * [(x-(x1+x2)/2)^2 + (y-(y1+y2)/2)^2]
-
+L^2 =  [(x-(x1+x2)/2)^2 + (y-(y1+y2)/2)^2]
 将y代入到距离公式中，得到：
-
-[(x2-x1)/(y2-y1)]^2 * [(x-(x1+x2)/2)^2 + (y-(y1+y2)/2)^2] - L^2 = 0
-
+[(x-(x1+x2)/2)^2 + (-(x2-x1)/(y2-y1) * (x - (x1+x2)/2) + (y1+y2)/2-(y1+y2)/2)^2]-L^2 =  0
 将其化简，得到：
+[(x-(x1+x2)/2)^2 + (-(x2-x1)/(y2-y1) * (x - (x1+x2)/2) )^2] - L^2 = 0，令xm=(x1+x2)/2,k=-(x2-x1)/(y2-y1) 
 
-(x2-x1)^2 * (y-y1) ^2 - 2 * (x2-x1) * (x-x1) * (y-y1) + (x-x1)^2 * (y2-y1)^2 - L^2 * (y2-y1)^2 = 0
+首先，将方程化简为一般的一元二次方程形式：
 
-这是一个二次方程，可以使用求根公式求解。
+(x - xm)^2 + (k*(x - xm))^2 - L^2 = 0
 
-C++代码实现：
+展开后得到：
 
-```cpp
+x^2 - 2xm*x + xm^2 + k^2*x^2 - 2k^2*xm*x + k^2*xm^2 - L^2 = 0
+
+整理后得到：
+
+(k^2 + 1)*x^2 - 2*(k^2*xm + xm)*x + xm^2 + k^2*xm^2 - L^2 = 0
+
+然后，使用一元二次方程求根公式求解该方程：
+
+x = [2*(k^2*xm + xm) ± sqrt(4*(k^2*xm + xm)^2 - 4*(k^2 + 1)*(xm^2 + k^2*xm^2 - L^2))]/(2*(k^2 + 1))
+
+化简后得到：
+
+x = [k^2*xm + xm ± sqrt((k^2*xm + xm)^2 - (k^2 + 1)*(xm^2 + k^2*xm^2 - L^2))]/(k^2 + 1)
+
+最后，使用C++代码实现该求解过程：
+
+```c++
 #include <iostream>
 #include <cmath>
 
 using namespace std;
 
 int main() {
-    double x1, y1, x2, y2, L;
-    cin >> x1 >> y1 >> x2 >> y2 >> L;
+    double x1, x2, y1, y2, L;
+    double xm, k, a, b, c, delta, x1_sol, x2_sol;
 
-    double mx = (x1 + x2) / 2;
-    double my = (y1 + y2) / 2;
-    double d = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-    double k = -(x2 - x1) / (y2 - y1);
+    // 输入x1, x2, y1, y2, L
+    cin >> x1 >> x2 >> y1 >> y2 >> L;
 
-    double a = pow(x2 - x1, 2);
-    double b = -2 * (x2 - x1) * (mx - x1);
-    double c = pow(mx - x1, 2) * pow(y2 - y1, 2) - pow(L, 2) * pow(y2 - y1, 2);
+    // 计算xm和k
+    xm = (x1 + x2) / 2;
+    k = -(x2 - x1) / (y2 - y1);
 
-    double delta = pow(b, 2) - 4 * a * c;
+    // 计算一元二次方程的系数
+    a = k * k + 1;
+    b = -2 * (k * k * xm + xm);
+    c = xm * xm + k * k * xm * xm - L * L;
+
+    // 计算判别式
+    delta = b * b - 4 * a * c;
+
+    // 判断方程有无实根
     if (delta < 0) {
-        cout << "No solution" << endl;
+        cout << "No real solutions!" << endl;
+    } else if (delta == 0) {
+        x1_sol = x2_sol = -b / (2 * a);
+        cout << "x1 = " << x1_sol << ", x2 = " << x2_sol << endl;
     } else {
-        double y = (-b + sqrt(delta)) / (2 * a);
-        double x = k * (y - my) + mx;
-        cout << x << " " << y << endl;
+        x1_sol = (k * k * xm + xm + sqrt(delta)) / (k * k + 1);
+        x2_sol = (k * k * xm + xm - sqrt(delta)) / (k * k + 1);
+        cout << "x1 = " << x1_sol << ", x2 = " << x2_sol << endl;
     }
 
     return 0;
 }
 ```
-qq
-111
