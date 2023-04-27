@@ -81,3 +81,111 @@ int main() {
     return 0;
 }
 ```
+
+NLopt  怎么使用，请分别举一个非线性优化和线性优化的例子教教我  c++
+本回答由gpt1.tool00.com代为生成，请认准本站。
+NLopt 是一个C/C++的开源非线性优化库，它支持多种优化算法，包括局部优化和全局优化。下面分别给出一个非线性优化和线性优化的例子。
+
+非线性优化例子：
+
+我们以 Rosenbrock 函数为例，它是一个经典的非线性优化测试函数，其表达式为：
+
+f(x,y) = (1-x)^2 + 100(y-x^2)^2
+
+该函数的全局最小值为 f(1,1) = 0。
+
+下面是使用 NLopt 求解 Rosenbrock 函数全局最小值的 C++ 代码：
+
+```c++
+#include <iostream>
+#include <nlopt.hpp>
+
+// Rosenbrock 函数
+double rosenbrock(const std::vector<double> &x, std::vector<double> &grad, void *data){
+    double a = 1.0, b = 100.0;
+    double fx = (a - x[0]) * (a - x[0]) + b * (x[1] - x[0] * x[0]) * (x[1] - x[0] * x[0]);
+    if (!grad.empty()) {
+        grad[0] = -2.0 * (a - x[0]) - 400.0 * (x[1] - x[0] * x[0]) * x[0];
+        grad[1] = 200.0 * (x[1] - x[0] * x[0]);
+    }
+    return fx;
+}
+
+int main(){
+    nlopt::opt opt(nlopt::GN_ESCH, 2); // GN_ESCH 算法
+    std::vector<double> lb{-5, -5}, ub{5, 5}; // 变量的上下界
+    opt.set_lower_bounds(lb);
+    opt.set_upper_bounds(ub);
+    opt.set_min_objective(rosenbrock, nullptr); // 目标函数
+    opt.set_xtol_rel(1e-6); // 相对误差容限
+    std::vector<double> x{0, 0}; // 初始点
+    double minf;
+    nlopt::result result = opt.optimize(x, minf); // 求解
+    std::cout << "Found minimum at f(" << x[0] << ", " << x[1] << ") = " << minf << std::endl;
+    return 0;
+}
+```
+
+线性优化例子：
+
+我们以标准形式的线性规划问题为例：
+
+最小化 f(x) = c^T x
+
+约束条件为：
+
+Ax <= b
+
+x >= 0
+
+其中，c、b 和 A 是已知的系数矩阵和向量，x 是待求解的变量向量。
+
+下面是使用 NLopt 求解该线性规划问题的 C++ 代码：
+
+```c++
+#include <iostream>
+#include <nlopt.hpp>
+
+// 目标函数
+double objective(unsigned n, const double *x, double *grad, void *data){
+    double *c = static_cast<double *>(data);
+    double fx = 0.0;
+    for (unsigned i = 0; i < n; i++) {
+        fx += c[i] * x[i];
+        if (grad) grad[i] = c[i];
+    }
+    return fx;
+}
+
+// 约束条件
+double constraint(unsigned n, const double *x, double *grad, void *data){
+    double *b = static_cast<double *>(data);
+    double fx = 0.0;
+    for (unsigned i = 0; i < n; i++) {
+        fx += x[i] * b[i];
+        if (grad) grad[i] = b[i];
+    }
+    return fx;
+}
+
+int main(){
+    nlopt::opt opt(nlopt::LD_SLSQP, 2); // LD_SLSQP 算法
+    std::vector<double> lb{0, 0}, ub{1, 1}; // 变量的上下界
+    opt.set_lower_bounds(lb);
+    opt.set_upper_bounds(ub);
+    std::vector<double> c{2, 1}; // 目标函数系数
+    opt.set_min_objective(objective, c.data()); // 目标函数
+    std::vector<double> b{1, 2}; // 约束条件系数
+    opt.add_inequality_constraint(constraint, b.data(), 1e-8); // 约束条件
+    opt.set_xtol_rel(1e-6); // 相对误差容限
+    std::vector<double> x{0, 0}; // 初始点
+    double minf;
+    nlopt::result result = opt.optimize(x, minf); // 求解
+    std::cout << "Found minimum at f(" << x[0] << ", " << x[1] << ") = " << minf << std::endl;
+    return 0;
+}
+```
+
+需要注意的是，NLopt 的使用方法与其他优化库类似，需要指定优化算法、目标函数、约束条件等参数，并设置相应的容限。
+
+
