@@ -301,4 +301,16 @@ g++ -std=c++11 -o nlopt666 nlopt666.cpp -lnlopt
 执行此命令后，将生成可执行文件nlopt666。运行此可执行文件将输出找到的最小值。
 
 
+2*x_c(t) - 2*x_obn + 2*DeltaL*cos(theta(t)) + 2*cos(q_1(t)+theta(t))*(a_2*sin(q_2(t)) + sin(q_2(t) + q_3(t))*(a_3 + d_5)) 
+
+
+2*y_c(t) - 2*y_obn + 2*DeltaL*sin(theta(t)) + 2*sin(q_1(t)+theta(t))*(a_2*sin(q_2(t)) + sin(q_2(t) + q_3(t))*(a_3 + d_5)) 
+
+
+
+
+
+
+
+
 
