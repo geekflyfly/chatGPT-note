@@ -326,4 +326,32 @@ cos(q2 + q3)*cos(q1 + thetac)*(a_3 + d_5)*(2*xc - 2*x_obn + 2*DeltaL*cos(thetac)
 
 
 
+本回答由gpt1.tool00.com代为生成，请认准本站。
+在 rospy 中没有 `spinOnce` 函数，但是可以使用多线程的方式来实现类似的功能。
+
+具体来说，可以使用 `rospy.Rate` 来控制消息发布的频率，然后在一个独立的线程中进行消息发布：
+
+```python
+import rospy
+import threading
+
+def publish_joint_angles():
+    pub = rospy.Publisher('joint_angles', JointState, queue_size=10)
+    rate = rospy.Rate(10)  # 控制发布频率为 10Hz
+    while not rospy.is_shutdown():
+        joint_angles = get_joint_angles()  # 获取关节角度
+        pub.publish(joint_angles)  # 发布关节角度
+        rate.sleep()  # 等待一段时间
+
+rospy.init_node('joint_angles_publisher')
+thread = threading.Thread(target=publish_joint_angles)
+thread.start()
+rospy.spin()  # 主线程中调用 rospy.spin()，等待 ROS 节点退出
+```
+
+这样，`publish_joint_angles` 函数就会在一个独立的线程中运行，每隔 100ms 发布一次关节角度。主线程中调用 `rospy.spin()` 函数，等待 ROS 节点退出。
+
+
+
+
 
