@@ -309,6 +309,7 @@ g++ -std=c++11 -o nlopt666 nlopt666.cpp -lnlopt
 
 
 
+-2*(a[1]*sin(q_2) + a[2]*sin(q_2 + q_3) + d[4]*sin(q_2 + q_3))*(y_obn*cos(q_1 + theta) - x_obn*sin(q_1 + theta) - cos(q_1 + theta)*y_c(t) + sin(q_1 + theta)*x_c(t) + deltaL*sin(q_1))
 
 
 
