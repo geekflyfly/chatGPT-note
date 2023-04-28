@@ -1,0 +1,27 @@
+s1=2*xc - 2*x_obn + 2*DeltaL*cos(thetac) + 2*cos(q1)*cos(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) - 2*sin(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2))
+
+s2=2*yc - 2*y_obn + 2*DeltaL*sin(thetac) + 2*cos(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) + 2*cos(thetac)*sin(q1)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2))
+
+s3=(DeltaL*cos(thetac) + cos(q1)*cos(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) - sin(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)))*(2*yc - 2*y_obn + 2*DeltaL*sin(thetac) + 2*cos(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) + 2*cos(thetac)*sin(q1)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2))) - (DeltaL*sin(thetac) + cos(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) + cos(thetac)*sin(q1)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)))*(2*xc - 2*x_obn + 2*DeltaL*cos(thetac) + 2*cos(q1)*cos(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) - 2*sin(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)))
+
+
+s4=-2*(a_3*sin(q2 + q3) + d_5*sin(q2 + q3) + a_2*sin(q2))*(y_obn*cos(q1 + thetac) - yc*cos(q1 + thetac) + DeltaL*sin(q1) - x_obn*sin(q1 + thetac) + xc*sin(q1 + thetac))
+
+s5=cos(q1 + thetac)*(a_3*cos(q2 + q3) + d_5*cos(q2 + q3) + a_2*cos(q2))*(2*xc - 2*x_obn + 2*DeltaL*cos(thetac) + 2*cos(q1)*cos(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) - 2*sin(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2))) - (sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2))*(2*H + 2*d_1 - 2*z_obn + 2*a_2*cos(q2) + cos(q2 + q3)*(2*a_3 + 2*d_5)) + sin(q1 + thetac)*(a_3*cos(q2 + q3) + d_5*cos(q2 + q3) + a_2*cos(q2))*(2*yc - 2*y_obn + 2*DeltaL*sin(thetac) + 2*cos(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) + 2*cos(thetac)*sin(q1)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)))
+
+
+s6=cos(q2 + q3)*cos(q1 + thetac)*(a_3 + d_5)*(2*xc - 2*x_obn + 2*DeltaL*cos(thetac) + 2*cos(q1)*cos(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) - 2*sin(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2))) - sin(q2 + q3)*(a_3 + d_5)*(2*H + 2*d_1 - 2*z_obn + 2*a_2*cos(q2) + cos(q2 + q3)*(2*a_3 + 2*d_5)) + cos(q2 + q3)*sin(q1 + thetac)*(a_3 + d_5)*(2*yc - 2*y_obn + 2*DeltaL*sin(thetac) + 2*cos(q1)*sin(thetac)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)) + 2*cos(thetac)*sin(q1)*(sin(q2 + q3)*(a_3 + d_5) + a_2*sin(q2)))
+
+
+arrayeq1=[ 1, 0, 0, -1, 0, DeltaL*sin(theta) + cos(q1)*sin(theta)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2)) + cos(theta)*sin(q1)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2)), sin(q1 + theta)*(a3*sin(q2 + q3) + d5*sin(q2 + q3) + a2*sin(q2)), -cos(q1 + theta)*(a3*cos(q2 + q3) + d5*cos(q2 + q3) + a2*cos(q2)), -cos(q2 + q3)*cos(q1 + theta)*(a3 + d5)]
+
+arrayeq2=[ 0, 1, 0, 0, -1, sin(q1)*sin(theta)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2)) - cos(q1)*cos(theta)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2)) - DeltaL*cos(theta), -cos(q1 + theta)*(a3*sin(q2 + q3) + d5*sin(q2 + q3) + a2*sin(q2)), -sin(q1 + theta)*(a3*cos(q2 + q3) + d5*cos(q2 + q3) + a2*cos(q2)), -cos(q2 + q3)*sin(q1 + theta)*(a3 + d5)]
+
+arrayeq3=[ 0, 0, 1, 0, 0, 0, 0, sin(q2 + q3)*(a3 + d5) + a2*sin(q2), sin(q2 + q3)*(a3 + d5)]
+
+
+eq1=x_e_in_world - xc - DeltaL*cos(theta) - cos(q1)*cos(theta)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2)) + sin(q1)*sin(theta)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2))
+
+eq2=y_e_in_world - yc - DeltaL*sin(theta) - cos(q1)*sin(theta)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2)) - cos(theta)*sin(q1)*(sin(q2 + q3)*(a3 + d5) + a2*sin(q2))
+
+eq3=z_e_in_world - d1 - H - cos(q2 + q3)*(a3 + d5) - a2*cos(q2)
