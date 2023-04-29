@@ -1,0 +1,8 @@
+#        要在四个不同的终端运行命令
+# 0      先通过roboflow  给机械臂上电，软件密码为elephant
+
+# 1     roslaunch mycobot_600 mycobot_600_slider.launch
+
+# 2      rosrun mycobot_600 slider_600_listener.py
+
+# 3      rosrun mycobot_600 slider_600_publisher.py
