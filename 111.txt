@@ -1,0 +1,13 @@
+
+arrayex[6]=[ 1, 0, 0, -1, 0, DeltaL*sin(x[5]) + cos(x[6])*sin(x[5])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7])) + cos(x[5])*sin(x[6])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7])), sin(x[6] + x[5])*(a3*sin(x[7] + x[8]) + d5*sin(x[7] + x[8]) + a2*sin(x[7])), -cos(x[6] + x[5])*(a3*cos(x[7] + x[8]) + d5*cos(x[7] + x[8]) + a2*cos(x[7])), -cos(x[7] + x[8])*cos(x[6] + x[5])*(a3 + d5)]
+
+arrayex[7]=[ 0, 1, 0, 0, -1, sin(x[6])*sin(x[5])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7])) - cos(x[6])*cos(x[5])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7])) - DeltaL*cos(x[5]), -cos(x[6] + x[5])*(a3*sin(x[7] + x[8]) + d5*sin(x[7] + x[8]) + a2*sin(x[7])), -sin(x[6] + x[5])*(a3*cos(x[7] + x[8]) + d5*cos(x[7] + x[8]) + a2*cos(x[7])), -cos(x[7] + x[8])*sin(x[6] + x[5])*(a3 + d5)]
+
+arrayex[8]=[ 0, 0, 1, 0, 0, 0, 0, sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7]), sin(x[7] + x[8])*(a3 + d5)]
+
+
+ex[6]=x[0] - x[3] - DeltaL*cos(x[5]) - cos(x[6])*cos(x[5])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7])) + sin(x[6])*sin(x[5])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7]))
+
+ex[7]=x[1] - x[4] - DeltaL*sin(x[5]) - cos(x[6])*sin(x[5])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7])) - cos(x[5])*sin(x[6])*(sin(x[7] + x[8])*(a3 + d5) + a2*sin(x[7]))
+
+ex[8]=x[2] - d1 - H - cos(x[7] + x[8])*(a3 + d5) - a2*cos(x[7])
