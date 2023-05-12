@@ -1,0 +1,21 @@
+diff_1=ke*(2*x_c - 2*x_r3 + 2*DeltaL*cos(theta) + 2*cos(q_1)*cos(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) - 2*sin(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) + kc*(2*x_c - 2*x_r2) + kd2*(2*x_c - 2*xc_last);
+
+
+diff_2=ke*(2*y_c - 2*y_r3 + 2*DeltaL*sin(theta) + 2*cos(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) + 2*cos(theta)*sin(q_1)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) + kc*(2*y_c - 2*y_r2) + kd2*(2*y_c - 2*yc_last);
+
+
+diff_3=kd2*(2*theta - 2*theta_last) - kc*(2*theta_r2 - 2*theta) - ke*(2*(DeltaL*sin(theta) + cos(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) + cos(theta)*sin(q_1)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)))*(x_c - x_r3 + DeltaL*cos(theta) + cos(q_1)*cos(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) - sin(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) - 2*(DeltaL*cos(theta) + cos(q_1)*cos(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) - sin(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)))*(y_c - y_r3 + DeltaL*sin(theta) + cos(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) + cos(theta)*sin(q_1)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))));
+
+
+diff_4=- 2*kd1*(q1_last - q_1) - 2*ke*(a_3*sin(q_2 + q_3) + d_5*sin(q_2 + q_3) + a_2*sin(q_2))*(y_r3*cos(q_1 + theta) - y_c*cos(q_1 + theta) + DeltaL*sin(q_1) + x_c*sin(q_1 + theta) - x_r3*sin(q_1 + theta));
+
+
+diff_5=ke*(2*(cos(q_1)*cos(theta)*(cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2)) - sin(q_1)*sin(theta)*(cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2)))*(x_c - x_r3 + DeltaL*cos(theta) + cos(q_1)*cos(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) - sin(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) + 2*(cos(q_1)*sin(theta)*(cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2)) + cos(theta)*sin(q_1)*(cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2)))*(y_c - y_r3 + DeltaL*sin(theta) + cos(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) + cos(theta)*sin(q_1)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) - 2*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))*(H + d_1 - z_r3 + cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2))) - kd1*(2*q2_last - 2*q_2);
+
+
+
+diff_6=ke*(2*(cos(q_2 + q_3)*cos(q_1)*cos(theta)*(a_3 + d_5) - cos(q_2 + q_3)*sin(q_1)*sin(theta)*(a_3 + d_5))*(x_c - x_r3 + DeltaL*cos(theta) + cos(q_1)*cos(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) - sin(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) + 2*(cos(q_2 + q_3)*cos(q_1)*sin(theta)*(a_3 + d_5) + cos(q_2 + q_3)*cos(theta)*sin(q_1)*(a_3 + d_5))*(y_c - y_r3 + DeltaL*sin(theta) + cos(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) + cos(theta)*sin(q_1)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2))) - 2*sin(q_2 + q_3)*(a_3 + d_5)*(H + d_1 - z_r3 + cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2))) - kd1*(2*q3_last - 2*q_3)
+;
+
+
+F_sum_simplify=kd1*((q1_last - q_1)^2 + (q2_last - q_2)^2 + (q3_last - q_3)^2) + kc*((theta_r2 - theta)^2 + (x_c - x_r2)^2 + (y_c - y_r2)^2) + kd2*((theta - theta_last)^2 + (x_c - xc_last)^2 + (y_c - yc_last)^2) + ke*((H + d_1 - z_r3 + cos(q_2 + q_3)*(a_3 + d_5) + a_2*cos(q_2))^2 + (x_c - x_r3 + DeltaL*cos(theta) + cos(q_1)*cos(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) - sin(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)))^2 + (y_c - y_r3 + DeltaL*sin(theta) + cos(q_1)*sin(theta)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)) + cos(theta)*sin(q_1)*(sin(q_2 + q_3)*(a_3 + d_5) + a_2*sin(q_2)))^2);
